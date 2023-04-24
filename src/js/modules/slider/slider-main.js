@@ -39,26 +39,43 @@ export class MainSlider extends Slider {
         this.showSlides(this.slideIndex += numSlide)
     }
 
-    render() {
-        try {
-            this.hanson = document.querySelector('.hanson')
-        } catch (error) { }
-
-        if (!this.btns) {
-            this.btns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    this.plusSlides(1)
-                })
-
-                btn.parentNode.previousElementSibling.addEventListener('click', (e) => {
-                    e.preventDefault()
-                    this.slideIndex = 1
-                    this.showSlides(this.slideIndex)
-                })
+    bindTriggers() {
+        this.btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.plusSlides(1)
             })
 
+            btn.parentNode.previousElementSibling.addEventListener('click', (e) => {
+                e.preventDefault()
+                this.slideIndex = 1
+                this.showSlides(this.slideIndex)
+            })
+        })
+
+        document.querySelectorAll('.prevmodule').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                this.plusSlides(-1)
+            })
+        })
+
+        document.querySelectorAll('.nextmodule').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                this.plusSlides(1)
+            })
+        })
+    }
+
+    render() {
+        if (this.container) {
+            try {
+                this.hanson = document.querySelector('.hanson')
+            } catch (error) { }
             this.showSlides(this.slideIndex)
-            return
+            this.bindTriggers()
         }
     }
 }
