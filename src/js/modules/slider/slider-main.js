@@ -1,9 +1,8 @@
-export class Slider {
-    constructor(page, btns) {
-        this.page = document.querySelector(page)
-        this.slides = [...this.page.children]
-        this.btns = document.querySelectorAll(btns)
-        this.slideIndex = 1
+import { Slider } from "./slider";
+
+export class MainSlider extends Slider {
+    constructor(btns) {
+        super(btns)
     }
 
     showSlides(numSlide) {
@@ -29,7 +28,7 @@ export class Slider {
             }
         } catch (error) { }
 
-        this.slides.forEach(slide => {
+        Array.from(this.slides).forEach(slide => {
             slide.style.display = 'none'
         })
 
