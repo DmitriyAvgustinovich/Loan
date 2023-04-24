@@ -58,6 +58,8 @@ export class MiniSlider extends Slider {
     }
 
     init() {
+        if (!this.container) return
+
         this.container.style.cssText = `
             display: flex;
             flex-wrap: wrap;
