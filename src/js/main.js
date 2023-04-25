@@ -1,4 +1,4 @@
-import { VideoPlayer, MainSlider, MiniSlider, Difference, Form } from './modules/index'
+import { VideoPlayer, MainSlider, MiniSlider, Difference, Form, ShowInfo, Download } from './modules/index'
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({
@@ -45,4 +45,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     new Difference('.officerold', '.officernew', '.officer__card-item').init()
     new Form('.form').init()
+
+    new ShowInfo('.plus__content').init()
+
+    new Download('.download').init()
 })
